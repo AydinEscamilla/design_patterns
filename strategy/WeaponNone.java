@@ -1,8 +1,15 @@
 package strategy;
 
-public class WeaponNone implements WeaponBehavior {
+public class WeaponNone extends WeaponBehavior {
+    public WeaponNone() {
+        super(5); 
+    }
+
     @Override
     public void attack() {
-        System.out.println("Fights with bare hands!");
+        System.out.println("I cannot attack with no weapon...");
+        Resources.sleep(1500);
+        Resources.clear();
     }
 }
+
