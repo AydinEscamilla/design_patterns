@@ -2,7 +2,7 @@ package strategy;
 
 /**
  * Character class representing a king
- * Inherits from Character and overrides toString() to display ASCII art along with the name
+ * Extends from Character and overrides toString() to display ASCII art along with the name
  */
 public class King extends Character {
     /**

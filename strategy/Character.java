@@ -7,7 +7,7 @@ package strategy;
  */
 public abstract class Character {
     /**
-     * Instantiating he name of the character
+     * Instantiating the name of the character
      */
     protected String name;
 
@@ -36,15 +36,10 @@ public abstract class Character {
 
     /**
      * Executes an attack using the currently assigned behavior
-     * Uses the set weapon, or displays a message if no set weapon is found
      */
     public void attack() {
-        if (weaponBehavior != null) {
-            System.out.print(name + " attacks: ");
-            weaponBehavior.attack();
-        } else {
-            System.out.println(name + " has no weapon to attack with!");
-        }
+        System.out.print(name + " attacks: ");
+        weaponBehavior.attack();
     }
 
     /**

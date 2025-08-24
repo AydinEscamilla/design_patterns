@@ -6,6 +6,7 @@ package strategy;
  * Extends WeaponBehavior but will not have an attack animation (outputting a message instead)
  */
 public class WeaponNone extends WeaponBehavior {
+    
     /**
      * Creates a new WeaponNone with a default speed (unused for this class in specific, still here for the UML)
      */

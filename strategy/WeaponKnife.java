@@ -3,13 +3,12 @@ package strategy;
 /**
  * A weapon that represents a knife (held or thrown, doesn't really matter)
  * This weapon animates a knife shifting across the screen
- * Extends WeaponBehavior and overrides attack() to animate
  * The animation speed is controlled by the speed inherited from WeaponBehavior
  */
 public class WeaponKnife extends WeaponBehavior {
     
     /**
-     * Creates WeaponKnife with a slow animation speed as denoted by 100ms between frames
+     * Creates WeaponKnife with a slow animation speed
      */
     public WeaponKnife() {
         super(100);
@@ -17,8 +16,7 @@ public class WeaponKnife extends WeaponBehavior {
 
     /**
      * Executes the attack animation for the knife
-     * The attack prints a knife that goes across the screen but leaves no origin (like the bow) or trail (like the stars)
-     * The animation runs slowly because of the high speed value of 100ms
+     * The attack prints a knife that goes across the screen
      */
     @Override
     public void attack() {

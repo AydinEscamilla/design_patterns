@@ -3,12 +3,12 @@ package strategy;
 /**
  * A weapon that represents a bow and arrow
  * This weapon animates a bow firing an arrow across the screen
- * Extends WeaponBehavior and overrides attack() to animate
  * The animation speed is controlled by the speed inherited from WeaponBehavior
  */
 public class WeaponBow extends WeaponBehavior {
+    
     /**
-     * Creates WeaponBow with a medium animation speed as denoted by 75ms between frames
+     * Creates WeaponBow with a medium animation speed
      */
     public WeaponBow() {
         super(75);
@@ -16,8 +16,7 @@ public class WeaponBow extends WeaponBehavior {
 
     /**
      * Executes the attack animation for a bow
-     * The attack prints a bow and then fires an arrow that travels as the knife does, leaving no trail, but the bow remains static
-     * The animation runs at a medium pace because of the middling speed value of 75ms
+     * The attack prints a bow and then fires an arrow that travels away from the static bow
      */
     @Override
     public void attack() {

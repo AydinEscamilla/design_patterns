@@ -2,7 +2,7 @@ package strategy;
 
 /**
  * Character class representing a troll
- * Inherits from Character and overrides toString() to display ASCII art along with the name
+ * Extends from Character and overrides toString() to display ASCII art along with the name
  */
 public class Troll extends Character {
     /**
