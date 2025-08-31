@@ -6,20 +6,22 @@ public class Watchman extends Subject {
         int mappedNote;
 
         if (note == 1) {
-            // TownDriver passes 1 → Army (option 3)
-            mappedNote = 3;
+            mappedNote = 3; // Army
             System.out.println("Trumpet is honked 1 time(s).");
+            Trumpet.play(true, 1); // honk once
         } else if (note == 2) {
-            // TownDriver passes 2 → Breach (option 4)
-            mappedNote = 4;
+            mappedNote = 4; // Breach
             System.out.println("Trumpet is honked 2 time(s).");
+            Trumpet.play(true, 2); // honk twice
         } else {
-            mappedNote = note; // safety fallback
+            mappedNote = note; // fallback
             System.out.println("Trumpet is honked " + note + " time(s).");
+            Trumpet.play(true, note); // honk N times
         }
 
         super.issueNotice(mappedNote);
     }
+
 
     @Override
     public void notifyObservers(int note) {
