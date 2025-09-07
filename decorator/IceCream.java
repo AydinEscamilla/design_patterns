@@ -7,21 +7,31 @@ package decorator;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract base class representing the ice cream as a whole
+ * Provides structure for handling the ASCII art as well as the scoops in general
+ */
 public abstract class IceCream {
+    /**
+     * Visual representation via ASCII art
+     */
     protected ArrayList<String> asciiArt = new ArrayList<>();
+
+    /**
+     * Number of scoops per ice cream
+     */
     protected int numScoops;
+
+    /** 
+     * Globally tracks the amount of ice cream total across all flavors
+     */
     protected static int globalScoopCount = 0;
 
 @Override
 public String toString() {
-    // Combine scoops and cone into one structure
+
     ArrayList<String> fullArt = new ArrayList<>(asciiArt);
 
-    // If the cone is stored separately, make sure it's appended here
-    // Example (if your Cone adds its lines later):
-    // fullArt.addAll(cone.getAsciiArt());
-
-    // Find the widest line across scoops + cone
     int maxWidth = 0;
     for (String line : fullArt) {
         if (line.length() > maxWidth) {
