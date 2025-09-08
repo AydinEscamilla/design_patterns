@@ -5,6 +5,10 @@
 
 package decorator;
 
+/**
+ * Utility class for ANSI color codes for the ASCII art
+ * Codes are applioed to ice cream scoops via their string words
+ */
 public class Colors {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
