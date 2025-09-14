@@ -16,6 +16,10 @@ public class DeliveredState extends State {
 
     @Override
     public String getETA() {
-        return "Delivered";
+        return String.format(
+            "The %s %s here.",
+            pkg.getItemName(),
+            pkg.getVerb("is", "are")
+        );
     }
 }

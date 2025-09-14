@@ -20,17 +20,17 @@ public class Package {
 
     // Behaviors
     public String order() {
-        return state.getStatus();
+        return state.getStatus() + "\n" + state.getETA();
     }
 
     public String mail() {
         setState(inTransitState);
-        return state.getStatus();
+        return state.getStatus() + "\n" + state.getETA();
     }
 
     public String received() {
         setState(deliveredState);
-        return state.getStatus();
+        return state.getStatus() + "\n" + state.getETA();
     }
 
     // State management
@@ -38,16 +38,24 @@ public class Package {
         this.state = state;
     }
 
-    // Getters
-    public String getItemName() {
-    if (quantity > 1) {
-        if (name.toLowerCase().endsWith("s")) {
-            return name; // already plural
-        }
-        return name + "s"; // add 's' only if needed
+    public State getState() {
+        return state;
     }
-    return name;
-}
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public String getItemName() {
+        if (quantity > 1) {
+            if (name.toLowerCase().endsWith("s")) {
+                return name; // already plural
+            }
+            return name + "s"; // basic pluralization
+        }
+        return name;
+    }
 
     public String getVerb(String singular, String plural) {
         return (quantity == 1) ? singular : plural;

@@ -2,26 +2,43 @@ package state;
 
 public class InTransitState extends State {
     private int days;
+    private boolean delayed;
 
     public InTransitState(Package pkg) {
         super(pkg);
-        this.days = random.nextInt(5) + 1; // 1–5 days for delivery
+        this.days = 5; // base transit time
+        this.delayed = random.nextInt(100) < 30; // 30% chance
+
+        if (delayed) {
+            int extraDays = random.nextInt(7) + 1; // 1–7 days
+            this.days += extraDays;
+        }
     }
 
     @Override
     public String getStatus() {
         return String.format(
-            "The %s %s out for delivery\nThe %s %s arrive within %d business days",
+            "The %s %s out for delivery.",
             pkg.getItemName(),
-            pkg.getVerb("is", "are"),
-            pkg.getItemName(),
-            pkg.getVerb("should", "should"),
-            days
+            pkg.getVerb("is", "are")
         );
     }
 
     @Override
     public String getETA() {
-        return days + " business days";
+        StringBuilder eta = new StringBuilder();
+        if (delayed) {
+            eta.append(String.format(
+                "The %s %s experienced a delay in shipping.\n",
+                pkg.getItemName(),
+                pkg.getVerb("has", "have")
+            ));
+        }
+        eta.append(String.format(
+            "The %s should arrive within %d business days.",
+            pkg.getItemName(),
+            days
+        ));
+        return eta.toString();
     }
 }
