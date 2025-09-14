@@ -1,9 +1,24 @@
+/**
+ * Author: Aydin Escamilla
+ * CSCE247
+ */
 package state;
 
+/**
+ * {@code OrderedState} extends {@link State} and shows a newly-placed order
+ * 
+ * It will also convey delays at this stage of the package process (pre-shipment)
+ */
 public class OrderedState extends State {
     private int days;
     private boolean delayed;
 
+    /**
+     * Constructs {@code OrderedState} with a random total preparation time
+     * The base for this time is 2 days, with a 20% chance to extend by 1-3 days
+     * 
+     * @param pkg is the package associated at this point
+     */
     public OrderedState(Package pkg) {
         super(pkg);
         this.days = 2; // base time
@@ -15,6 +30,11 @@ public class OrderedState extends State {
         }
     }
 
+    /**
+     * Returns a string for the order status
+     * 
+     * @return is a message confirming the ordering of the package
+     */
     @Override
     public String getStatus() {
         return String.format(
@@ -24,6 +44,12 @@ public class OrderedState extends State {
         );
     }
 
+    /**
+     * Will return a string for the expected shipping time
+     * Any delays are conveyed to the user as additional information
+     * 
+     * @return is a message for when the package will eventually ship off
+     */
     @Override
     public String getETA() {
         StringBuilder eta = new StringBuilder();
