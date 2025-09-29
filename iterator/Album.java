@@ -66,8 +66,13 @@ public class Album {
      * @return an Iterator that iterates through Songs in the Album randomly
      */
     public Iterator<Song> createShuffleIterator() {
-        return new ShuffleIterator(songs, count);
+        Song[] validSongs = new Song[count];
+        for (int i = 0; i < count; i++) {
+            validSongs[i] = songs[i];
+        }
+        return new ShuffleIterator(validSongs);
     }
+
 
     /**
      * Retrieves the Album's name

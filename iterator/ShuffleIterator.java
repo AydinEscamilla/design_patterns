@@ -15,55 +15,47 @@ import java.util.Random;
  */
 public class ShuffleIterator implements Iterator<Song> {
     private Song[] songs;
-    private int[] order;
-    private int position;
-    private int count;
     private Random rand;
 
     /**
      * Creates a ShuffleIterator for randomly traversing an array of song objects
-     * 
+     *
      * @param songs is the array of Song objects to iterate through randomly
      */
-    public ShuffleIterator(Song[] songs, int count) {
-        this.songs = songs;
-        this.count = count;
-        this.order = new int[count];
+    public ShuffleIterator(Song[] songs) {
+        // copy valid songs
+        this.songs = new Song[songs.length];
+        for (int i = 0; i < songs.length; i++) {
+            this.songs[i] = songs[i];
+        }
+
+        // shuffle in place
         this.rand = new Random();
-
-        // Initialize and shuffle order
-        for (int i = 0; i < count; i++) {
-            order[i] = i;
+        for (int i = 0; i < this.songs.length; i++) {
+            int j = rand.nextInt(this.songs.length);
+            Song temp = this.songs[i];
+            this.songs[i] = this.songs[j];
+            this.songs[j] = temp;
         }
-        for (int i = 0; i < count; i++) {
-            int j = rand.nextInt(count);
-            int temp = order[i];
-            order[i] = order[j];
-            order[j] = temp;
-        }
-
-        this.position = 0;
     }
 
-    /**
-     * Checks if another song is available for random iteration
-     * 
-     * @return true if more Songs remain for random selection, false otherwise
-     */
     @Override
     public boolean hasNext() {
-        return position < count;
+        return songs.length > 0;
     }
 
-    /**
-     * Retrieves the next song at random
-     * 
-     * @return a randomly selected Song from the Album
-     */
     @Override
     public Song next() {
         if (!hasNext()) throw new NoSuchElementException();
-        return songs[order[position++]];
+
+        // take the last song and shrink the array by one
+        Song nextSong = songs[songs.length - 1];
+        Song[] newSongs = new Song[songs.length - 1];
+        for (int i = 0; i < newSongs.length; i++) {
+            newSongs[i] = songs[i];
+        }
+        songs = newSongs;
+
+        return nextSong;
     }
 }
-
